@@ -157,3 +157,6 @@ C:\Users\nyloo\OneDrive\Documentos\WellDoc\protagonize-tech\TarefasAPI\obj\Debug
 C:\Users\nyloo\OneDrive\Documentos\WellDoc\protagonize-tech\TarefasAPI\obj\Debug\net10.0\TarefasAPI.pdb
 C:\Users\nyloo\OneDrive\Documentos\WellDoc\protagonize-tech\TarefasAPI\obj\Debug\net10.0\TarefasAPI.genruntimeconfig.cache
 C:\Users\nyloo\OneDrive\Documentos\WellDoc\protagonize-tech\TarefasAPI\obj\Debug\net10.0\ref\TarefasAPI.dll
+C:\Users\nyloo\OneDrive\Documentos\WellDoc\protagonize-tech\TarefasAPI\bin\Debug\net10.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\nyloo\OneDrive\Documentos\WellDoc\protagonize-tech\TarefasAPI\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\nyloo\OneDrive\Documentos\WellDoc\protagonize-tech\TarefasAPI\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerUI.dll
