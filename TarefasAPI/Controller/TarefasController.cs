@@ -25,7 +25,7 @@ public class TarefasController : ControllerBase
 
     // POST /api/tarefas
     [HttpPost]
-    public async Task<IActionResult> Create(CreateTarefaRequest request)
+    public async Task<IActionResult> Create([FromBody] CreateTarefaRequest request)
     {
         var tarefa = new Tarefa
         {
@@ -43,7 +43,7 @@ public class TarefasController : ControllerBase
 
     // PUT /api/tarefas/{id}
     [HttpPut("{id}")]
-    public async Task<IActionResult> Update(int id, UpdateTarefaRequest request)
+    public async Task<IActionResult> Update(int id, [FromBody] UpdateTarefaRequest request)
     {
         if (id != request.Id) return BadRequest();
 

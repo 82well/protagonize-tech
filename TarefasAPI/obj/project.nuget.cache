@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "n/+wwgaF9f4=",
+  "dgSpecHash": "Rw0gHW9tQ4Y=",
   "success": true,
-  "projectFilePath": "F:\\Doc\\AVANADE BOOTCAMP\\protagonize-tech\\TarefasAPI\\TarefasAPI.csproj",
+  "projectFilePath": "c:\\Users\\nyloo\\Downloads\\AVANADE\\protagonize-tech\\TarefasAPI\\TarefasAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\nyloo\\.nuget\\packages\\azure.core\\1.47.1\\azure.core.1.47.1.nupkg.sha512",
     "C:\\Users\\nyloo\\.nuget\\packages\\azure.identity\\1.14.2\\azure.identity.1.14.2.nupkg.sha512",

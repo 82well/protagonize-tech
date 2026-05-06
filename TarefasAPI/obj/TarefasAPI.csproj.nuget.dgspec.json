@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Doc\\AVANADE BOOTCAMP\\protagonize-tech\\TarefasAPI\\TarefasAPI.csproj": {}
+    "c:\\Users\\nyloo\\Downloads\\AVANADE\\protagonize-tech\\TarefasAPI\\TarefasAPI.csproj": {}
   },
   "projects": {
-    "F:\\Doc\\AVANADE BOOTCAMP\\protagonize-tech\\TarefasAPI\\TarefasAPI.csproj": {
+    "c:\\Users\\nyloo\\Downloads\\AVANADE\\protagonize-tech\\TarefasAPI\\TarefasAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Doc\\AVANADE BOOTCAMP\\protagonize-tech\\TarefasAPI\\TarefasAPI.csproj",
+        "projectUniqueName": "c:\\Users\\nyloo\\Downloads\\AVANADE\\protagonize-tech\\TarefasAPI\\TarefasAPI.csproj",
         "projectName": "TarefasAPI",
-        "projectPath": "F:\\Doc\\AVANADE BOOTCAMP\\protagonize-tech\\TarefasAPI\\TarefasAPI.csproj",
+        "projectPath": "c:\\Users\\nyloo\\Downloads\\AVANADE\\protagonize-tech\\TarefasAPI\\TarefasAPI.csproj",
         "packagesPath": "C:\\Users\\nyloo\\.nuget\\packages\\",
-        "outputPath": "F:\\Doc\\AVANADE BOOTCAMP\\protagonize-tech\\TarefasAPI\\obj\\",
+        "outputPath": "c:\\Users\\nyloo\\Downloads\\AVANADE\\protagonize-tech\\TarefasAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\nyloo\\AppData\\Roaming\\NuGet\\NuGet.Config"
