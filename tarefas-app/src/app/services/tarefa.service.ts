@@ -7,7 +7,7 @@ import { Tarefa } from '../models/tarefa.model';
   providedIn: 'root'
 })
 export class TarefaService {
-  private apiUrl = 'https://localhost:7243/api/tarefas'; // ajuste a porta
+  private apiUrl = 'http://localhost:5243/api/tarefas'; // ajuste a porta
 
   constructor(private http: HttpClient) {}
 

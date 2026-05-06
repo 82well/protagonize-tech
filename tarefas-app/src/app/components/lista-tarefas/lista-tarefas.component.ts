@@ -11,9 +11,13 @@ import { FormularioTarefaComponent } from '../formulario-tarefa/formulario-taref
   template: `
     <div class="tarefas-container">
       <h2>Lista de Tarefas</h2>
-      <button class="btn-add" (click)="showForm = !showForm">
+      <button class="btn-add" (click)="showForm = !showForm" [disabled]="loading">
         {{ showForm ? 'Cancelar' : 'Adicionar Tarefa' }}
       </button>
+
+      <div *ngIf="loading" class="loading">
+        Carregando...
+      </div>
 
       <app-formulario-tarefa
         *ngIf="showForm"
@@ -34,12 +38,16 @@ import { FormularioTarefaComponent } from '../formulario-tarefa/formulario-taref
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let tarefa of tarefas">
+          <tr *ngFor="let tarefa of tarefas" [class.concluida]="tarefa.status === 'Concluída'">
             <td>{{ tarefa.id }}</td>
             <td>{{ tarefa.titulo }}</td>
             <td>{{ tarefa.descricao }}</td>
-            <td>{{ tarefa.status }}</td>
-            <td>{{ tarefa.dataCriacao | date:'short' }}</td>
+            <td>
+              <span class="status-badge" [class]="tarefa.status.toLowerCase().replace(' ', '-')">
+                {{ tarefa.status }}
+              </span>
+            </td>
+            <td>{{ tarefa.dataCriacao | date:'dd/MM/yyyy HH:mm' }}</td>
             <td>
               <button class="btn-edit" (click)="editTarefa(tarefa)">Editar</button>
               <button class="btn-delete" (click)="deleteTarefa(tarefa.id!)">Excluir</button>
@@ -64,8 +72,18 @@ import { FormularioTarefaComponent } from '../formulario-tarefa/formulario-taref
       cursor: pointer;
       margin-bottom: 20px;
     }
-    .btn-add:hover {
+    .btn-add:hover:not(:disabled) {
       background-color: #45a049;
+    }
+    .btn-add:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+    .loading {
+      text-align: center;
+      padding: 20px;
+      font-style: italic;
+      color: #666;
     }
     .tarefas-table {
       width: 100%;
@@ -103,12 +121,31 @@ import { FormularioTarefaComponent } from '../formulario-tarefa/formulario-taref
     .btn-delete:hover {
       background-color: #da190b;
     }
+    .concluida {
+      background-color: #f0f8f0;
+    }
+    .status-badge {
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 0.9em;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    .status-badge.pendente {
+      background-color: #fff3cd;
+      color: #856404;
+    }
+    .status-badge.concluída {
+      background-color: #d4edda;
+      color: #155724;
+    }
   `]
 })
 export class ListaTarefasComponent implements OnInit {
   tarefas: Tarefa[] = [];
   showForm = false;
   selectedTarefa: Tarefa | null = null;
+  loading = false;
 
   constructor(private tarefaService: TarefaService) {}
 
@@ -117,9 +154,17 @@ export class ListaTarefasComponent implements OnInit {
   }
 
   loadTarefas(): void {
+    this.loading = true;
     this.tarefaService.getAll().subscribe({
-      next: (data) => this.tarefas = data,
-      error: (error) => console.error('Erro ao carregar tarefas:', error)
+      next: (data) => {
+        this.tarefas = data;
+        this.loading = false;
+      },
+      error: (error) => {
+        console.error('Erro ao carregar tarefas:', error);
+        this.loading = false;
+        alert('Erro ao carregar tarefas. Verifique se a API está rodando.');
+      }
     });
   }
 
@@ -130,29 +175,48 @@ export class ListaTarefasComponent implements OnInit {
 
   deleteTarefa(id: number): void {
     if (confirm('Tem certeza que deseja excluir esta tarefa?')) {
+      this.loading = true;
       this.tarefaService.delete(id).subscribe({
-        next: () => this.loadTarefas(),
-        error: (error) => console.error('Erro ao excluir tarefa:', error)
+        next: () => {
+          this.loadTarefas();
+          alert('Tarefa excluída com sucesso!');
+        },
+        error: (error) => {
+          console.error('Erro ao excluir tarefa:', error);
+          this.loading = false;
+          alert('Erro ao excluir tarefa.');
+        }
       });
     }
   }
 
   onSave(tarefa: Tarefa): void {
+    this.loading = true;
     if (tarefa.id) {
       this.tarefaService.update(tarefa.id, tarefa).subscribe({
         next: () => {
           this.loadTarefas();
           this.onCancel();
+          alert('Tarefa atualizada com sucesso!');
         },
-        error: (error) => console.error('Erro ao atualizar tarefa:', error)
+        error: (error) => {
+          console.error('Erro ao atualizar tarefa:', error);
+          this.loading = false;
+          alert('Erro ao atualizar tarefa.');
+        }
       });
     } else {
       this.tarefaService.create(tarefa).subscribe({
         next: () => {
           this.loadTarefas();
           this.onCancel();
+          alert('Tarefa criada com sucesso!');
         },
-        error: (error) => console.error('Erro ao criar tarefa:', error)
+        error: (error) => {
+          console.error('Erro ao criar tarefa:', error);
+          this.loading = false;
+          alert('Erro ao criar tarefa.');
+        }
       });
     }
   }

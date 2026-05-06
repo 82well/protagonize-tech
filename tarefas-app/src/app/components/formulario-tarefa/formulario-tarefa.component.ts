@@ -48,7 +48,6 @@ import { Tarefa } from '../../models/tarefa.model';
             required
             #status="ngModel">
             <option value="Pendente">Pendente</option>
-            <option value="Em Andamento">Em Andamento</option>
             <option value="Concluída">Concluída</option>
           </select>
           <div *ngIf="status.invalid && status.touched" class="error">
