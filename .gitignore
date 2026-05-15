@@ -2,6 +2,7 @@
 node_modules/
 /dist
 /.angular
+tarefas-app/.angular
 /.vs
 /.vscode
 /.cache
