@@ -34,11 +34,13 @@ if (app.Environment.IsDevelopment())
 }
 else
 {
+    app.UseSwagger();
+    app.UseSwaggerUI();
     app.UseHttpsRedirection();
 }
 
-app.UseAuthorization();
 app.UseCors("AllowAngular");
+app.UseAuthorization();
 app.MapControllers();
 
 app.Run();

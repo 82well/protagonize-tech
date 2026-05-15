@@ -25,37 +25,21 @@ public class TarefasController : ControllerBase
 
     // POST /api/tarefas
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] CreateTarefaRequest request)
+    public async Task<IActionResult> Create(Tarefa tarefa)
     {
-        var tarefa = new Tarefa
-        {
-            Titulo = request.Titulo,
-            Descricao = request.Descricao,
-            Status = request.Status,
-            DataCriacao = DateTime.UtcNow
-        };
-
+        tarefa.DataCriacao = DateTime.Now;
         _context.Tarefas.Add(tarefa);
         await _context.SaveChangesAsync();
-
         return CreatedAtAction(nameof(GetById), new { id = tarefa.Id }, tarefa);
     }
 
     // PUT /api/tarefas/{id}
     [HttpPut("{id}")]
-    public async Task<IActionResult> Update(int id, [FromBody] UpdateTarefaRequest request)
+    public async Task<IActionResult> Update(int id, Tarefa tarefa)
     {
-        if (id != request.Id) return BadRequest();
-
-        var tarefa = await _context.Tarefas.FindAsync(id);
-        if (tarefa is null) return NotFound();
-
-        tarefa.Titulo = request.Titulo;
-        tarefa.Descricao = request.Descricao;
-        tarefa.Status = request.Status;
-
+        if (id != tarefa.Id) return BadRequest();
+        _context.Entry(tarefa).State = EntityState.Modified;
         await _context.SaveChangesAsync();
-
         return NoContent();
     }
 
